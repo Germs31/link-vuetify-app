@@ -1,5 +1,7 @@
 <template>
     <v-navigation-drawer
+        app
+        value="true"
         mini-variant
         mini-variant-width="100"
         dark
@@ -8,14 +10,16 @@
         permanent>
 
         <v-list flat>
+            <!-- here to add space -->
             <v-list-item>
-                <v-item-content></v-item-content>
+                <v-list-item-content></v-list-item-content>
             </v-list-item>
-            <v-list-item-group v-model="active" color="blue darken-4">
+        
+            <v-list-item-group v-model="active" color="grey darken-4">
                 <v-list-item 
                   v-for="(navOption, index) in navOptions"
                   :key="index">
-                    <v-list-item-content>
+                    <v-list-item-content class="mb-3">
                         <v-icon class="mb-2">{{navOption.icon}}</v-icon>
                         <v-list-item-subtitle align="center">{{navOption.title}}</v-list-item-subtitle>
                     </v-list-item-content>
