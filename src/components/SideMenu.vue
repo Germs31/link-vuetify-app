@@ -14,17 +14,32 @@
             <v-list-item>
                 <v-list-item-content></v-list-item-content>
             </v-list-item>
+
+            <v-menu v-model="menu">
+
+            </v-menu>
         
-            <v-list-item-group v-model="active" color="grey darken-4">
-                <v-list-item 
-                  v-for="(navOption, index) in navOptions"
-                  :key="index">
-                    <v-list-item-content class="mb-3">
-                        <v-icon class="mb-2">{{navOption.icon}}</v-icon>
-                        <v-list-item-subtitle align="center">{{navOption.title}}</v-list-item-subtitle>
-                    </v-list-item-content>
-                </v-list-item>
-            </v-list-item-group>
+            <v-list>
+                <v-list-item-group v-model="active" active-class="black--text">
+                        <div v-for="(navOption, index) in navOptions" :key="index">
+                            <router-link  :to="`${navOption.path}`">
+                                <v-list-item>
+                                    <v-list-item-content class="mb-3">
+                                        <div class="icon-cont">
+                                            <v-icon class="ml-4">
+                                                {{navOption.icon}}
+                                                
+                                            </v-icon>
+                                            <v-icon small class="chevron">mdi-chevron-right</v-icon>
+                                        </div>
+                                        <v-list-item-subtitle align="center">{{navOption.title}}</v-list-item-subtitle>
+                                    </v-list-item-content>
+                                </v-list-item>
+                            </router-link>
+                        </div>
+
+                </v-list-item-group>
+            </v-list>
         </v-list>
     </v-navigation-drawer>
 </template>
@@ -34,19 +49,20 @@ export default {
     name:'SideMenu',
     data() {
         return {
+            menu: false,
             active: 0,
             navOptions: [
                 {
-                    title: 'Dashboard', icon: 'mdi-view-dashboard'
+                    title: 'Dashboard', icon: 'mdi-view-dashboard', path:'/'
                 },
                 {
-                    title:'Account', icon: 'mdi-account-details'
+                    title:'Account', icon: 'mdi-account-details', path:'/account'
                 },
                 {
-                    title:'Reports', icon: 'mdi-file-chart'
+                    title:'Reports', icon: 'mdi-file-chart', path:'/reports'
                 },
                 {
-                    title:'Settings', icon: 'mdi-tune'
+                    title:'Settings', icon: 'mdi-tune', path:'/settings'          
                 } 
             ]
         }
@@ -55,4 +71,13 @@ export default {
 </script>
 
 <style>
+.icon-cont{
+    display: flex;
+    justify-content: center;
+}
+
+.chevron {
+    position: absolute;
+    left: 3px;
+}
 </style>
